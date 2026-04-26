@@ -1,0 +1,120 @@
+# Feynman Research v4.0 - Agent 模型配置
+
+# 模型分配策略
+models:
+  # 主协调器 - 需要高理解能力
+  coordinator:
+    primary: qwen/qwen3.5-plus
+    fallback: qwen/glm-5
+    
+  # 假设生成 - 需要创新思维
+  hypothesis:
+    primary: qwen/qwen3.5-plus
+    fallback: qwen/MiniMax-M2.5  # Reasoning model
+    
+  # 信息搜索 - Token 优化优先
+  search:
+    primary: qwen/qwen3.5-plus
+    mode: caveman-ultra  # 87% Token 节省
+    
+  # 深度分析 - 需要推理能力
+  analysis:
+    primary: qwen/MiniMax-M2.5  # Reasoning
+    fallback: qwen/qwen3.5-plus
+    mode: caveman-lite  # 50-75% Token 节省
+    
+  # 文献综述 - 需要严谨验证
+  literature_review:
+    primary: qwen/qwen3.5-plus
+    mode: normal
+    
+  # 实验设计 - 需要逻辑推理
+  experiment:
+    primary: qwen/MiniMax-M2.5  # Reasoning
+    fallback: qwen/qwen3.5-plus
+    
+  # 质量验证 - 需要批判思维
+  quality:
+    primary: qwen/MiniMax-M2.5  # Reasoning
+    fallback: qwen/qwen3.5-plus
+    
+  # 输出生成 - Token 优化
+  output:
+    primary: qwen/qwen3.5-plus
+    mode: caveman-lite  # 50-75% Token 节省
+
+# Token 优化规则
+token_optimization:
+  # 信息收集阶段
+  information_collection:
+    mode: ultra
+    savings: 87%
+    
+  # 深度分析阶段
+  deep_analysis:
+    mode: lite
+    savings: 50-75%
+    
+  # 用户交互阶段
+  user_interaction:
+    mode: normal
+    savings: 0%
+    
+  # 安全警告
+  safety_warning:
+    mode: normal
+    auto_downgrade: true
+
+# 质量验证级别
+quality_levels:
+  # P0 - 关键信息
+  critical:
+    checks: [fact, cross_reference, logical]
+    timeout: 60s
+    
+  # P1 - 标准信息
+  standard:
+    checks: [cross_reference]
+    timeout: 30s
+    
+  # P2 - 快速检查
+  quick:
+    checks: [quick_verify]
+    timeout: 10s
+
+# 引用验证参数
+citation_verification:
+  # Semantic Scholar API
+  semantic_scholar: true
+  
+  # Levenshtein 相似度阈值
+  levenshtein_threshold: 70
+  
+  # 引用质量分级
+  quality_grades:
+    P0: 90-100  # 高质量引用
+    P1: 70-89   # 标准引用
+    P2: 50-69   # 需验证引用
+    reject: <50 # 拒绝引用
+
+# 实验设计参数
+experiment_design:
+  # 对照组设计
+  controls: true
+  
+  # 变量识别
+  variable_identification: true
+  
+  # 方法选择
+  methodologies: [empirical, simulation, theoretical]
+  
+  # 结果分析
+  result_analysis: true
+
+# 超时配置
+timeout:
+  hypothesis_generation: 120s
+  literature_review: 180s
+  experiment_execution: 300s
+  quality_verification: 60s
+  total_research: 600s

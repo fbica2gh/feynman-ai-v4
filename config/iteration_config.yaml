@@ -1,0 +1,64 @@
+# Feynman Research v5.0 - 迭代配置
+
+# 最大迭代轮次
+max_iterations: 5
+
+# 审查阈值
+review_threshold:
+  # P0 结果审查阈值（三维度均需满足）
+  p0: 90  # 数据/理论/约束维度均 >90%
+  
+  # P1 假设审查阈值
+  p1: 80  # 假设可验证性 >80%
+
+# Token 优化开关
+token_optimization: true
+
+# 迭代终止条件
+termination_conditions:
+  # 所有审查意见已解决
+  all_opinions_resolved: true
+  
+  # 高优先级意见已解决
+  p0_opinions_resolved: true
+  
+  # 达到最大迭代轮次
+  max_iterations_reached: true
+  
+  # 用户确认满意
+  user_confirmed: false  # 需要用户主动确认
+
+# 审查意见优先级定义
+opinion_priorities:
+  p0:
+    description: "高优先级 - 必须解决"
+    color: "red"
+    must_resolve_before_delivery: true
+  
+  p1:
+    description: "中优先级 - 应该解决"
+    color: "yellow"
+    must_resolve_before_delivery: false
+  
+  p2:
+    description: "低优先级 - 可选解决"
+    color: "green"
+    must_resolve_before_delivery: false
+
+# 三维度验证权重
+validation_weights:
+  data_dimension: 35
+  theory_dimension: 30
+  constraint_dimension: 20
+  logic_consistency: 15
+
+# 迭代历史保留
+iteration_history:
+  # 是否保留迭代历史
+  keep_history: true
+  
+  # 保留的最大历史记录数
+  max_history_records: 10
+  
+  # 是否保留每次迭代的输出草案
+  keep_drafts: true

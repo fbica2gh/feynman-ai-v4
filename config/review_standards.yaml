@@ -1,0 +1,169 @@
+# Feynman Research v5.0 - 审查标准配置
+
+# P1 假设审查标准（关卡 1）
+p1_standards:
+  # 方向正确性检查
+  direction_correctness:
+    weight: 40
+    threshold: 80
+    description: "研究假设是否符合科学原理"
+    check_items:
+      - "假设是否有理论基础"
+      - "假设是否可验证"
+      - "假设是否与研究主题相关"
+      - "假设是否有明确的因果关系"
+    
+  # 假设可验证性检查
+  hypothesis_verifiability:
+    weight: 30
+    threshold: 80
+    description: "是否可设计实验验证"
+    check_items:
+      - "是否可定义验证指标"
+      - "是否可设计对照组"
+      - "是否可收集验证数据"
+      - "是否可执行验证流程"
+    
+  # 资源可行性检查
+  resource_feasibility:
+    weight: 20
+    threshold: 80
+    description: "时间/数据/工具是否充足"
+    check_items:
+      - "时间约束是否明确"
+      - "数据来源是否可获取"
+      - "工具是否可用"
+      - "预算是否充足"
+    
+  # 边界清晰性检查
+  boundary_clarity:
+    weight: 10
+    threshold: 80
+    description: "研究范围是否明确"
+    check_items:
+      - "研究范围是否明确界定"
+      - "排除条件是否明确"
+      - "边界条件是否完整"
+      - "研究假设是否在边界内"
+
+# P0 结果审查标准（关卡 2）
+p0_standards:
+  # 数据维度检查
+  data_dimension:
+    weight: 35
+    threshold: 90
+    description: "实验结果是否可重复"
+    check_items:
+      - "数据来源是否可信"
+      - "数据是否一致（>90%）"
+      - "统计显著性是否检验"
+      - "数据质量评分是否 >80"
+      - "实验是否可重复"
+    
+  # 理论维度检查
+  theory_dimension:
+    weight: 30
+    threshold: 90
+    description: "文献支撑是否充分"
+    check_items:
+      - "引用真实性是否 >85%"
+      - "Levenshtein 匹配度是否 >70%"
+      - "引用质量评分是否 ≥B"
+      - "理论支撑强度是否 ≥中"
+      - "关键结论是否有文献支撑"
+    
+  # 约束维度检查
+  constraint_dimension:
+    weight: 20
+    threshold: 90
+    description: "边界条件是否满足"
+    check_items:
+      - "边界条件是否完整"
+      - "时间约束是否满足"
+      - "资源约束是否满足"
+      - "约束清单完整性是否 >90%"
+      - "约束是否全部验证"
+    
+  # 逻辑一致性检查
+  logic_consistency:
+    weight: 15
+    threshold: 90
+    description: "结论是否自洽"
+    check_items:
+      - "是否有逻辑矛盾"
+      - "结论是否与假设一致"
+      - "推理是否完整"
+      - "因果关系是否清晰"
+
+# 三维度交叉验证配置
+three_dimension_validation:
+  # 数据维度验证
+  data_validation:
+    methods:
+      - "多源数据对比"
+      - "统计显著性检验"
+      - "数据质量评分"
+      - "实验可重复性验证"
+    
+    scoring:
+      excellent: 95
+      good: 90
+      acceptable: 80
+      poor: 70
+    
+    threshold_for_pass: 90
+  
+  # 理论维度验证
+  theory_validation:
+    methods:
+      - "Semantic Scholar 验证"
+      - "Levenshtein 匹配计算"
+      - "引用质量评分"
+      - "理论支撑强度评估"
+    
+    scoring:
+      strong: "强"
+      medium: "中"
+      weak: "弱"
+    
+    threshold_for_pass: "中"
+  
+  # 约束维度验证
+  constraint_validation:
+    methods:
+      - "边界条件检查"
+      - "时间约束验证"
+      - "资源约束验证"
+      - "约束清单完整性检查"
+    
+    scoring:
+      complete: 100
+      mostly_complete: 90
+      partially_complete: 70
+      incomplete: 50
+    
+    threshold_for_pass: 90
+
+# 审查意见清单格式
+review_checklist_format:
+  header:
+    - "# 审查意见清单 - ITERATION {iteration}"
+    - "## 审查时间"
+    - "{timestamp}"
+    - "## 审查维度"
+    - "- 数据维度: {data_score}%"
+    - "- 理论维度: {theory_score}%"
+    - "- 约束维度: {constraint_score}%"
+  
+  opinions_section:
+    - "## 审查意见"
+    - "### 高优先级 (P0)"
+    - "{p0_opinions}"
+    - "### 中优先级 (P1)"
+    - "{p1_opinions}"
+    - "### 低优先级 (P2)"
+    - "{p2_opinions}"
+  
+  decision_section:
+    - "## 决策"
+    - "{decision_text}"
